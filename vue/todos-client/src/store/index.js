@@ -20,11 +20,5 @@ export default new Vuex.Store({
         },
     },
     actions: {
-        addTodo({commit}){
-            commit('ADD_TODO')
-        },
-        removeTodo({commit}, todo){
-            commit('REMOVE_TODO', todo)
-        }
     }
 })
