@@ -8,7 +8,7 @@
   </span>
   </div>
   <ul class="list-group">
-  <li class="list-group-item" v-for="(todo, index) in todo_list" :key="index">
+  <li class="list-group-item" v-for="(todo, index) in this.$store.state.todos" :key="index">
   {{todo.name}}
     <div class="btn-group pull-right" style="font-size: 12px; line-height: 1;">
       <button type="button" class="btn-group btn-default" v-on:click="deleteTodo(index)">
@@ -26,18 +26,15 @@ export default {
   data () {
     return {
       name: null,
-      todo_list: []
     }
   },
   methods: {
     deleteTodo (index) {
-      this.todo_list.splice(index, 1)
+      this.$store.commit('del_todo', index)
     },
     createTodo (name) {
-      if (name != null) {
-        this.todo_list.push({name: name})
-        this.name = null
-      }
+      this.$store.commit('add_todo', name)
+      this.name = null
     }
   }
 }
